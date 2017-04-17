@@ -1,0 +1,192 @@
+<div class="apidocDiv">
+<style>
+/*csslint
+*/
+.apidocDiv {
+    background: #fff;
+    font-family: Arial, Helvetica, sans-serif;
+}
+.apidocDiv a[href] {
+    color: #33f;
+    font-weight: bold;
+    text-decoration: none;
+}
+.apidocDiv a[href]:hover {
+    text-decoration: underline;
+}
+.apidocCodeCommentSpan {
+    background: #bbf;
+    color: #000;
+    display: block;
+}
+.apidocCodeKeywordSpan {
+    color: #d00;
+    font-weight: bold;
+}
+.apidocCodePre {
+    background: #eef;
+    border: 1px solid;
+    color: #777;
+    padding: 5px;
+    white-space: pre-wrap;
+}
+.apidocFooterDiv {
+    margin-top: 20px;
+    text-align: center;
+}
+.apidocModuleLi {
+    margin-top: 10px;
+}
+.apidocSectionDiv {
+    border-top: 1px solid;
+    margin-top: 20px;
+}
+.apidocSignatureSpan {
+    color: #777;
+    font-weight: bold;
+}
+</style>
+<h1>api documentation for
+    <a
+
+        href="https://github.com/0x00A/node-chrome#readme"
+
+    >node-chrome (v1.2.3)</a>
+</h1>
+<h4>Run chrome headlessly as a module or as a command from the commandline.</h4>
+<div class="apidocSectionDiv"><a
+    href="#apidoc.tableOfContents"
+    id="apidoc.tableOfContents"
+><h1>table of contents</h1></a><ol>
+
+    <li class="apidocModuleLi"><a href="#apidoc.module.node-chrome">module node-chrome</a><ol>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.node-chrome.node-chrome">
+            function <span class="apidocSignatureSpan"></span>node-chrome
+            <span class="apidocSignatureSpan">(...argv)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.node-chrome.toString">
+            function <span class="apidocSignatureSpan">node-chrome.</span>toString
+            <span class="apidocSignatureSpan">()</span>
+            </a>
+
+        </li>
+
+    </ol></li>
+
+    <li class="apidocModuleLi"><a href="#apidoc.module.node-chrome.toString">module node-chrome.toString</a><ol>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.node-chrome.toString.toString">
+            function <span class="apidocSignatureSpan">node-chrome.</span>toString
+            <span class="apidocSignatureSpan">()</span>
+            </a>
+
+        </li>
+
+    </ol></li>
+
+</ol></div>
+
+<div class="apidocSectionDiv">
+<h1><a href="#apidoc.module.node-chrome" id="apidoc.module.node-chrome">module node-chrome</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.node-chrome.node-chrome" id="apidoc.element.node-chrome.node-chrome">
+        function <span class="apidocSignatureSpan"></span>node-chrome
+        <span class="apidocSignatureSpan">(...argv)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">node-chrome = function (...argv) {
+  const main = path.join(__dirname, &#x27;main.js&#x27;)
+  const stdio = [null, null, null, &#x27;ipc&#x27;]
+  const preload = path.join(__dirname, &#x27;preload.js&#x27;)
+  const options = []
+
+  if (typeof argv[0] === &#x27;string&#x27;) {
+    options.push(&#x27;-s&#x27;, argv[0])
+  } else if (typeof argv[0] === &#x27;object&#x27;) {
+    const opts = argv[0]
+    if (opts.js) {
+      options.push(&#x27;--js&#x27;, opts.js)
+    }
+    if (opts.html) {
+      options.push(&#x27;--html&#x27;, opts.html)
+    }
+  }
+
+  if (argv[1]) {
+    options.push(&#x27;--node&#x27;)
+  }
+
+  const args = [main, preload, ...options]
+  const sp = child.spawn(electron, args, { stdio })
+
+  // running as bin script
+  if (module.parent.filename === parent) {
+    sp.on(&#x27;message&#x27;, msg =&#x3e; process[msg.event].write(msg.output + &#x27;\n&#x27;))
+    sp.on(&#x27;exit&#x27;, (code, sig) =&#x3e; process.exit(code, sig))
+  } else {
+    // running as a module
+    const ee = new events.EventEmitter()
+    sp.on(&#x27;message&#x27;, msg =&#x3e; ee.emit(msg.event, msg.output))
+    sp.on(&#x27;exit&#x27;, (code, sig) =&#x3e; ee.emit(&#x27;exit&#x27;, code, sig))
+    ee.on(&#x27;kill&#x27;, (sig) =&#x3e; sp.kill(sp.pid, sig))
+    return ee
+  }
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.node-chrome.toString" id="apidoc.element.node-chrome.toString">
+        function <span class="apidocSignatureSpan">node-chrome.</span>toString
+        <span class="apidocSignatureSpan">()</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">toString = function () {
+    return text;
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+</div>
+
+<div class="apidocSectionDiv">
+<h1><a href="#apidoc.module.node-chrome.toString" id="apidoc.module.node-chrome.toString">module node-chrome.toString</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.node-chrome.toString.toString" id="apidoc.element.node-chrome.toString.toString">
+        function <span class="apidocSignatureSpan">node-chrome.</span>toString
+        <span class="apidocSignatureSpan">()</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function toString() { [native code] }</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+</div>
+
+<div class="apidocFooterDiv">
+    [ this document was created with
+    <a href="https://github.com/kaizhu256/node-utility2" target="_blank">utility2</a>
+    ]
+</div>
+</div>
