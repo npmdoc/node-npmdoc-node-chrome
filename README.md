@@ -1,4 +1,7 @@
-# api documentation for  [node-chrome (v1.2.3)](https://github.com/0x00A/node-chrome#readme)  [![npm package](https://img.shields.io/npm/v/npmdoc-node-chrome.svg?style=flat-square)](https://www.npmjs.org/package/npmdoc-node-chrome) [![travis-ci.org build-status](https://api.travis-ci.org/npmdoc/node-npmdoc-node-chrome.svg)](https://travis-ci.org/npmdoc/node-npmdoc-node-chrome)
+# npmdoc-node-chrome
+
+#### basic api documentation for  [node-chrome (v1.2.3)](https://github.com/0x00A/node-chrome#readme)  [![npm package](https://img.shields.io/npm/v/npmdoc-node-chrome.svg?style=flat-square)](https://www.npmjs.org/package/npmdoc-node-chrome) [![travis-ci.org build-status](https://api.travis-ci.org/npmdoc/node-npmdoc-node-chrome.svg)](https://travis-ci.org/npmdoc/node-npmdoc-node-chrome)
+
 #### Run chrome headlessly as a module or as a command from the commandline.
 
 [![NPM](https://nodei.co/npm/node-chrome.png?downloads=true&downloadRank=true&stars=true)](https://www.npmjs.com/package/node-chrome)
